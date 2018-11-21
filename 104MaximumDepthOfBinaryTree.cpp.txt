@@ -1,0 +1,19 @@
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    int maxDepth(TreeNode* root) {
+        if(root==NULL)
+            return 0;
+        int lmax = maxDepth(root->left);//c++中当定义类对象是指针对象时候，就需要用到->指向类中的成员；当定义一般对象时候时就需要用到"."指向类中的成员
+        int rmax = maxDepth(root->right);
+        return max(lmax,rmax) + 1;
+    }
+};
