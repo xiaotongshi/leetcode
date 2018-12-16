@@ -1,0 +1,21 @@
+class Solution {
+public:
+    bool isHappy(int n) {
+        set<int> s;//判断是否有相同的数,hash表，无序
+        while(n!=1){
+            int sum = 0 ;
+            while(n>0){
+                sum += (n%10) * (n%10);//取余数
+                n = n/10;
+            }
+            if(s.count(sum)){//查找表中是否有这个数.count()
+                return false;
+            }
+            else{
+                s.insert(sum);//判断是否有相同的数，添加用.insert()
+            }
+            n = sum;
+        }
+        return true;
+    }
+};
