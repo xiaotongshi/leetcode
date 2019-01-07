@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int rob(vector<int>& nums) {
+        if (nums.size()==0) return 0;
+        if (nums.size()==1) return nums[0];
+        //1抢上一个屋子，不能抢当前屋子，sum截止累加到上一个屋子
+        //2抢当前屋子，不能抢上一个屋子，sum截止到上两个屋子加当前
+        int rob = nums[0];
+        int no_rob = 0;
+        for (int i = 1; i < nums.size(); i++){
+            int new_rob = no_rob + nums[i];//抢当前的
+            no_rob = max(rob, no_rob);//不抢当前的
+            rob = new_rob;
+        }
+        return max(rob, no_rob);
+    }
+};
