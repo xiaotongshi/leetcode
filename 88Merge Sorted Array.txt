@@ -1,0 +1,15 @@
+class Solution {
+public:
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+//it is better than starting from the front. We could fill out the empty space first, and control the flags by charging whether they reach 0 or not
+        int p1 = m - 1;
+        int p2 = n - 1;
+        int k = m + n - 1;
+        while(p2 >= 0){
+            if (p1 >= 0 && nums1[p1] > nums2[p2]) nums1[k--] = nums1[p1--];
+            else nums1[k--] = nums2[p2--];
+        }
+        //if p1 >= 0, then we don't need to care about that, cuz the array is already there.
+        //while(p2 >= 0) nums1[k--] = nums2[p2--];
+    }
+};

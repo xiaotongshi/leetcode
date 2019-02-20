@@ -1,0 +1,11 @@
+class Solution {
+public:
+    void rotate(vector<int>& nums, int k) {
+        int n = nums.size() - 1;
+        while(k != 0){
+            nums.insert(nums.begin(),nums[n]);
+            nums.pop_back();
+            k--;
+        }
+    }
+};
