@@ -1,0 +1,54 @@
+# 给你一棵二叉树，每个节点的值为 1 到 9 。我们称二叉树中的一条路径是 「伪回文」的，当它满足：路径经过的所有节点值的排列中，存在一个回文序列。
+
+# 请你返回从根到叶子节点的所有路径中 伪回文 路径的数目。
+
+# https://leetcode-cn.com/contest/weekly-contest-190/problems/pseudo-palindromic-paths-in-a-binary-tree/
+
+import collections
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution(object):
+    def pseudoPalindromicPaths (self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        # 用广度优先遍历找出所有的路径
+        path = []
+        queue = [[root]]
+        while queue:
+            p = queue.pop(0)
+            node = p[-1]
+            # 如果是叶结点
+            if (node.left is None) & (node.right is None):
+                path.append([x.val for x in p])
+            else: 
+                if node.left:
+                    queue.append(p+[node.left])
+                if node.right:
+                    queue.append(p+[node.right])
+     
+        # 是否能构成回文串：频数为奇数的数有<=1个
+        def judge(p):
+            if p is None:
+                return 0
+            c = list(dict(collections.Counter(p)).values())
+            flag = 0
+            i = 0
+            while (flag <= 1) & (i < len(c)):
+                if c[i]%2 != 0:
+                    flag += 1
+                i += 1
+            if flag <= 1:
+                return 1
+            else:
+                return 0
+            
+        ans = [judge(p) for p in path]
+            
+        return sum(ans)
+        

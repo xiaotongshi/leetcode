@@ -1,0 +1,24 @@
+# -*- coding:utf-8 -*-
+# class TreeLinkNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+#         self.next = None
+class Solution:
+    def GetNext(self, pNode):
+        # write code here
+        # 如果是根结点且有右子树，就返回右子树的最左结点
+        if pNode.right:
+            p = pNode.right
+            while p.left:
+                p = p.left
+            return p
+        while pNode.next:
+            # 如果给定结点是根节点的左节点，返回根节点
+            if pNode == pNode.next.left:
+                return pNode.next
+            # 则是根节点的右节点，查找其根节点
+            else:
+                pNode = pNode.next
+        return None
