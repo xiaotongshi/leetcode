@@ -1,7 +1,0 @@
-class Solution {
-public:
-    int majorityElement(vector<int>& nums) {
-        sort(nums.begin(), nums.end()); //出现次数大于n/2
-        return nums[nums.size()/2]; //vector求长度用size()
-    }
-};
