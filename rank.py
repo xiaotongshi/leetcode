@@ -118,5 +118,6 @@ def adjust_heap(arr, i, n):
         parent = right
     if parent != i:
         arr[i], arr[parent] = arr[parent], arr[i]
+        adjust_heap(arr, parent, n)
 
 # print(heapSort(arr))
